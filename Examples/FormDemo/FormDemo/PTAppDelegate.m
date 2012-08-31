@@ -30,12 +30,13 @@
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         PTMasterViewController *masterViewController = [[PTMasterViewController alloc] initWithStyle:UITableViewStylePlain];
+
         self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
+
         self.window.rootViewController = self.navigationController;
     } else {
         PTMasterViewController *masterViewController = [[PTMasterViewController alloc] initWithStyle:UITableViewStylePlain];
-        UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
-        
+
         PTDetailViewController *firstViewController = [[PTDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
         PTDetailViewController *secondViewController = [[PTDetailViewController alloc] initWithStyle:UITableViewStylePlain];
 
@@ -44,7 +45,7 @@
         self.splitViewController = [[UISplitViewController alloc] init];
         self.splitViewController.delegate = firstViewController;
         self.splitViewController.viewControllers = @[
-            masterNavigationController,
+            [[UINavigationController alloc] initWithRootViewController:masterViewController],
             [[UINavigationController alloc] initWithRootViewController:firstViewController]
         ];
         
