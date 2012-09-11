@@ -16,6 +16,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PTFormViewController : UITableViewController
+#import "PTFormView.h"
+
+@interface PTFormViewController : UIViewController <PTFormViewDataSource>
+
+@property (strong, nonatomic) PTFormView *formView;
+
+- (id)initWithStyle:(PTFormViewStyle)style;
 
 @end

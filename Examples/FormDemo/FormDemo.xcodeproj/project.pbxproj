@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		504B4F5E15F0F36B000988CD /* PTFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B4F5D15F0F36B000988CD /* PTFormView.m */; };
 		50C6AABC15EE69CD003CCE6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C6AABB15EE69CD003CCE6E /* UIKit.framework */; };
 		50C6AABE15EE69CD003CCE6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C6AABD15EE69CD003CCE6E /* Foundation.framework */; };
 		50C6AAC015EE69CD003CCE6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C6AABF15EE69CD003CCE6E /* CoreGraphics.framework */; };
@@ -16,9 +17,12 @@
 		50C6AACF15EE69CD003CCE6E /* PTMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C6AACE15EE69CD003CCE6E /* PTMasterViewController.m */; };
 		50C6AAD215EE69CD003CCE6E /* PTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C6AAD115EE69CD003CCE6E /* PTDetailViewController.m */; };
 		50C6AAE715EE6A3D003CCE6E /* PTFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C6AAE615EE6A3D003CCE6E /* PTFormViewController.m */; };
+		50C6AAEE15EF5D0C003CCE6E /* PTFormViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C6AAED15EF5D0C003CCE6E /* PTFormViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		504B4F5C15F0F36A000988CD /* PTFormView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTFormView.h; sourceTree = "<group>"; };
+		504B4F5D15F0F36B000988CD /* PTFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTFormView.m; sourceTree = "<group>"; };
 		50C6AAB715EE69CD003CCE6E /* FormDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C6AABB15EE69CD003CCE6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		50C6AABD15EE69CD003CCE6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -35,6 +39,8 @@
 		50C6AAD115EE69CD003CCE6E /* PTDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTDetailViewController.m; sourceTree = "<group>"; };
 		50C6AAE515EE6A3D003CCE6E /* PTFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTFormViewController.h; sourceTree = "<group>"; };
 		50C6AAE615EE6A3D003CCE6E /* PTFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTFormViewController.m; sourceTree = "<group>"; };
+		50C6AAEC15EF5D0B003CCE6E /* PTFormViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTFormViewCell.h; sourceTree = "<group>"; };
+		50C6AAED15EF5D0C003CCE6E /* PTFormViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTFormViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,10 @@
 			children = (
 				50C6AAE515EE6A3D003CCE6E /* PTFormViewController.h */,
 				50C6AAE615EE6A3D003CCE6E /* PTFormViewController.m */,
+				504B4F5C15F0F36A000988CD /* PTFormView.h */,
+				504B4F5D15F0F36B000988CD /* PTFormView.m */,
+				50C6AAEC15EF5D0B003CCE6E /* PTFormViewCell.h */,
+				50C6AAED15EF5D0C003CCE6E /* PTFormViewCell.m */,
 			);
 			name = PTFormViewController;
 			path = ../../PTFormViewController;
@@ -182,6 +192,8 @@
 				50C6AACF15EE69CD003CCE6E /* PTMasterViewController.m in Sources */,
 				50C6AAD215EE69CD003CCE6E /* PTDetailViewController.m in Sources */,
 				50C6AAE715EE6A3D003CCE6E /* PTFormViewController.m in Sources */,
+				50C6AAEE15EF5D0C003CCE6E /* PTFormViewCell.m in Sources */,
+				504B4F5E15F0F36B000988CD /* PTFormView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
