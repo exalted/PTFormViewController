@@ -42,9 +42,19 @@ typedef enum {
     PTFormViewCellStyleSelectMultiple   = 1 << 11
 } PTFormViewCellStyle;
 
+typedef enum {
+    PTFormViewCellInline    = 1 << 0,
+    PTFormViewCellCompact   = 1 << 1
+} PTFormViewCellOptions;
+
 @interface PTFormViewCell : UITableViewCell
 
-+ (NSString *)reuseIdentifierForStyle:(PTFormViewCellStyle)style;
+@property (nonatomic, readonly) PTFormViewCellStyle style;
+
+@property (nonatomic) PTFormViewCellOptions options;
+
+- (BOOL)isInline;
+- (BOOL)isCompact;
 
 - (id)initWithStyle:(PTFormViewCellStyle)style;
 

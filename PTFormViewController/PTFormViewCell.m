@@ -27,12 +27,14 @@ typedef enum {
 
 @interface PTFormViewCell ()
 
-- (id)initReadOnlyWithStyle:(PTFormViewCellStyle)style;
-- (id)initInputSingleLineWithStyle:(PTFormViewCellStyle)style;
-- (id)initInputMultiLineWithStyle:(PTFormViewCellStyle)style;
-- (id)initBooleanWithStyle:(PTFormViewCellStyle)style;
-- (id)initDateTimeWithStyle:(PTFormViewCellStyle)style;
-- (id)initSelectWithStyle:(PTFormViewCellStyle)style;
+@property (nonatomic, readwrite) PTFormViewCellStyle style;
+
+- (void)prepareReadOnlyCellWithStyle:(PTFormViewCellStyle)style;
+- (void)prepareInputSingleLineCellWithStyle:(PTFormViewCellStyle)style;
+- (void)prepareInputMultiLineCellWithStyle:(PTFormViewCellStyle)style;
+- (void)prepareBooleanCellWithStyle:(PTFormViewCellStyle)style;
+- (void)prepareDateTimeCellWithStyle:(PTFormViewCellStyle)style;
+- (void)prepareSelectCellWithStyle:(PTFormViewCellStyle)style;
 
 @end
 
@@ -49,74 +51,92 @@ typedef enum {
 
 + (NSString *)reuseIdentifierForStyle:(PTFormViewCellStyle)style
 {
-    return [NSString stringWithFormat:@"%@%d", NSStringFromSelector(_cmd), style];
+    return [NSString stringWithFormat:@"%@Style%d", NSStringFromClass(self), style];
 }
 
-- (id)initReadOnlyWithStyle:(PTFormViewCellStyle)style
+- (BOOL)isInline
+{
+    return (self.options & PTFormViewCellInline);
+}
+
+- (BOOL)isCompact
+{
+    return (self.options & PTFormViewCellCompact);
+}
+
+- (id)initWithStyle:(PTFormViewCellStyle)style
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[PTFormViewCell reuseIdentifierForStyle:style]];
     if (self) {
-        if (style == PTFormViewCellStyleGroup) {
-            self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        self.style = style;
+        if ((style & PTFormViewCellGroupReadOnly)) {
+            [self prepareReadOnlyCellWithStyle:style];
+        }
+        else if ((style & PTFormViewCellGroupInputSingleLine)) {
+            [self prepareInputSingleLineCellWithStyle:style];
+        }
+        else if ((style & PTFormViewCellGroupInputMultiLine)) {
+            [self prepareInputMultiLineCellWithStyle:style];
+        }
+        else if ((style & PTFormViewCellGroupBoolean)) {
+            [self prepareBooleanCellWithStyle:style];
+        }
+        else if ((style & PTFormViewCellGroupDateTime)) {
+            [self prepareDateTimeCellWithStyle:style];
+        }
+        else if ((style & PTFormViewCellGroupSelect)) {
+            [self prepareSelectCellWithStyle:style];
         }
     }
     return self;
 }
 
-- (id)initInputSingleLineWithStyle:(PTFormViewCellStyle)style
+- (void)prepareReadOnlyCellWithStyle:(PTFormViewCellStyle)style
 {
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[PTFormViewCell reuseIdentifierForStyle:style]];
-    if (self) {
-        // TODO missing implementation
+    if (style == PTFormViewCellStyleGroup) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    return self;
 }
 
-- (id)initInputMultiLineWithStyle:(PTFormViewCellStyle)style
+- (void)prepareInputSingleLineCellWithStyle:(PTFormViewCellStyle)style
 {
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[PTFormViewCell reuseIdentifierForStyle:style]];
-    if (self) {
-        // TODO missing implementation
+    // TODO missing implementation
+
+    if (!self.isInline) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    return self;
 }
 
-- (id)initBooleanWithStyle:(PTFormViewCellStyle)style
+- (void)prepareInputMultiLineCellWithStyle:(PTFormViewCellStyle)style
 {
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[PTFormViewCell reuseIdentifierForStyle:style]];
-    if (self) {
-        // TODO missing implementation
+    // TODO missing implementation
+
+    if (!self.isInline) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    return self;
 }
 
-- (id)initDateTimeWithStyle:(PTFormViewCellStyle)style
+- (void)prepareBooleanCellWithStyle:(PTFormViewCellStyle)style
 {
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[PTFormViewCell reuseIdentifierForStyle:style]];
-    if (self) {
-        // TODO missing implementation
-    }
-    return self;
+    // TODO missing implementation
 }
 
-- (id)initSelectWithStyle:(PTFormViewCellStyle)style
+- (void)prepareDateTimeCellWithStyle:(PTFormViewCellStyle)style
 {
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[PTFormViewCell reuseIdentifierForStyle:style]];
-    if (self) {
-        // TODO missing implementation
+    // TODO missing implementation
+
+    if (!self.isInline) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    return self;
 }
 
-- (id)initWithStyle:(PTFormViewCellStyle)style
+- (void)prepareSelectCellWithStyle:(PTFormViewCellStyle)style
 {
-    return ((style & PTFormViewCellGroupReadOnly) ? [self initReadOnlyWithStyle:style] :
-            (style & PTFormViewCellGroupInputSingleLine) ? [self initInputSingleLineWithStyle:style] :
-            (style & PTFormViewCellGroupInputMultiLine) ? [self initInputMultiLineWithStyle:style] :
-            (style & PTFormViewCellGroupBoolean) ? [self initBooleanWithStyle:style] :
-            (style & PTFormViewCellGroupDateTime) ? [self initDateTimeWithStyle:style] :
-            (style & PTFormViewCellGroupSelect) ? [self initSelectWithStyle:style] :
-            nil);
+    // TODO missing implementation
+
+    if (!self.isInline) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
 }
 
 /*

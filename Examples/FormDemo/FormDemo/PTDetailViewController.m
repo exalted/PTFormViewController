@@ -60,6 +60,7 @@
     PTFormViewCell *cell = [formView dequeueReusableCellWithStyle:style];
     if (cell == nil) {
         cell = [[PTFormViewCell alloc] initWithStyle:style];
+        cell.options = PTFormViewCellInline;
     }
 
     cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];

@@ -16,6 +16,12 @@
 
 #import "PTFormView.h"
 
+@interface PTFormViewCell ()
+
++ (NSString *)reuseIdentifierForStyle:(PTFormViewCellStyle)style;
+
+@end
+
 @interface PTFormView ()
 
 @property (nonatomic, readwrite) PTFormViewStyle formStyle;
@@ -61,7 +67,19 @@
 
 - (PTFormViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.formDataSource formView:self cellForRowAtIndexPath:indexPath];
+    PTFormViewCell *cell = [self.formDataSource formView:self cellForRowAtIndexPath:indexPath];
+
+    // TODO delete assertion below when implemented detailed cell option (a.k.a. "not inline")
+    NSAssert(cell.isInline, @"Warning: "
+             "Detailed cell option is not supported yet! "
+             "You must set \"inline\" cell option for all cells (e.g. \"cell.options = PTFormViewCellInline\").");
+
+    if (cell.style == PTFormViewCellStyleSelectSingle || cell.style == PTFormViewCellStyleSelectMultiple) {
+        NSAssert(!cell.isInline || cell.isCompact || [self numberOfRowsInSection:indexPath.section] == 1, @"Error: "
+                 "An \"inline\" and \"non-compact\" cell must be the only cell in its section!");
+    }
+
+    return cell;
 }
 
 - (id)dequeueReusableCellWithStyle:(PTFormViewStyle)style

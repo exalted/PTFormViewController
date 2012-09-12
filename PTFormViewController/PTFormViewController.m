@@ -32,10 +32,6 @@
     self = [super init];
     if (self) {
         self.formView = [[PTFormView alloc] initWithFrame:CGRectZero style:style];
-        self.formView.delegate = self;
-        self.formView.dataSource = self;
-        
-        self.formView.formDataSource = self;
     }
     return self;
 }
@@ -49,7 +45,13 @@
 {
     [super viewDidLoad];
 
-    [self.formView reloadData];
+    if (self.formView.formDataSource == nil) {
+        self.formView.formDataSource = self;
+    }
+
+    // this will trigger reloadData automatically
+    self.formView.delegate = self;
+    self.formView.dataSource = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
