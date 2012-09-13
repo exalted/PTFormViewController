@@ -16,6 +16,8 @@
 
 #import "PTDetailViewController.h"
 
+#import "PTExampleData.h"
+
 @interface PTDetailViewController ()
 
 @end
@@ -45,17 +47,19 @@
 
 - (NSInteger)numberOfSectionsInFormView:(PTFormView *)formView
 {
-    return 2;
+    return [[PTExampleData items] count];
 }
 
 - (NSInteger)formView:(PTFormView *)formView numberOfRowsInSection:(NSInteger)section
 {
-    return (section % 2 == 0) ? 5 : 2;
+    return [[[[PTExampleData items] objectAtIndex:section] objectForKey:kPTExampleDataSectionItemsKey] count];
 }
 
 - (PTFormViewCell *)formView:(PTFormView *)formView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PTFormViewCellStyle style = (indexPath.section % 2 == 0) ? PTFormViewCellStyleTextReadonly : PTFormViewCellStyleGroup;
+    NSDictionary *item = [[[[PTExampleData items] objectAtIndex:indexPath.section] objectForKey:kPTExampleDataSectionItemsKey] objectAtIndex:indexPath.row];
+
+    PTFormViewCellStyle style = [[item objectForKey:kPTExampleDataCellStyleKey] intValue];
 
     PTFormViewCell *cell = [formView dequeueReusableCellWithStyle:style];
     if (cell == nil) {
@@ -63,7 +67,7 @@
         cell.options = PTFormViewCellInline;
     }
 
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
+    cell.textLabel.text = [item objectForKey:kPTExampleDataCellLabelKey];
 
     return cell;
 }
