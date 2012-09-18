@@ -49,6 +49,10 @@
         self.formView.formDataSource = self;
     }
 
+    if (self.formView.formDelegate == nil) {
+        self.formView.formDelegate = self;
+    }
+
     // this will trigger reloadData automatically
     self.formView.delegate = self;
     self.formView.dataSource = self;
@@ -83,6 +87,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.formView cellForRowAtIndexPath:indexPath];
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PTFormView *formView = (PTFormView *)tableView;
+    PTFormViewCell *formViewCell = (PTFormViewCell *)cell;
+
+    if ([formView.formDelegate respondsToSelector:@selector(formView:willDisplayCell:forRowAtIndexPath:)]) {
+        [formView.formDelegate formView:formView willDisplayCell:formViewCell forRowAtIndexPath:indexPath];
+    }
 }
 
 #pragma mark - Form view data source

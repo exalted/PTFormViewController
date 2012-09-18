@@ -18,7 +18,7 @@
 
 #import "PTFormView.h"
 
-@interface PTFormViewController : UIViewController <PTFormViewDataSource>
+@interface PTFormViewController : UIViewController <PTFormViewDelegate, PTFormViewDataSource>
 
 @property (strong, nonatomic) PTFormView *formView;
 

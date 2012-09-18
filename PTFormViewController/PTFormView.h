@@ -41,6 +41,16 @@ typedef enum {
 
 @end
 
+#pragma mark - Form view delegate ==============================================
+
+@protocol PTFormViewDelegate <NSObject>
+
+@optional
+
+- (void)formView:(PTFormView *)formView willDisplayCell:(PTFormViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 #pragma mark - Form view =======================================================
 
 @interface PTFormView : UITableView
@@ -48,6 +58,7 @@ typedef enum {
 @property (nonatomic, readonly) PTFormViewStyle formStyle;
 
 @property (unsafe_unretained, nonatomic) id<PTFormViewDataSource> formDataSource;
+@property (unsafe_unretained, nonatomic) id<PTFormViewDelegate> formDelegate;
 
 - (id)initWithFrame:(CGRect)frame style:(PTFormViewStyle)style;
 
