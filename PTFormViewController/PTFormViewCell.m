@@ -60,6 +60,8 @@ typedef enum {
 
 @property (nonatomic, readwrite) PTFormViewCellStyle style;
 
++ (NSString *)reuseIdentifierForStyle:(PTFormViewCellStyle)style;
+
 - (void)prepareReadOnlyCellWithStyle:(PTFormViewCellStyle)style;
 - (void)prepareInputSingleLineCellWithStyle:(PTFormViewCellStyle)style;
 - (void)prepareInputMultiLineCellWithStyle:(PTFormViewCellStyle)style;
