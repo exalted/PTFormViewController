@@ -90,17 +90,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.formView numberOfSections];
+    return [(PTFormView *)tableView numberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.formView numberOfRowsInSection:section];
+    return [(PTFormView *)tableView numberOfRowsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.formView cellForRowAtIndexPath:indexPath];
+    return [(PTFormView *)tableView cellForRowAtIndexPath:indexPath];
 }
 
 #pragma mark - Table view delegate
