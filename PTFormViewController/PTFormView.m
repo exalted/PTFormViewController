@@ -16,9 +16,42 @@
 
 #import "PTFormView.h"
 
+#import "UIView+PTFormViewFrameAdditions.h"
+
 @interface PTFormViewCell ()
 
 + (NSString *)reuseIdentifierForStyle:(PTFormViewCellStyle)style;
+
+@end
+
+@interface PTFormView (PTFormViewAdditions)
+
+@property (nonatomic, readonly) UIEdgeInsets insets;
+
+@end
+
+@implementation PTFormView (PTFormViewAdditions)
+
+// (Ref.: http://stackoverflow.com/a/4872199/11895)
+- (UIEdgeInsets)insets
+{
+    CGFloat value;
+
+    if (self.formStyle == PTFormViewStylePlain) {
+        value = 0.0;
+    }
+    else if (self.$width < 400.0 || [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        value = 10.0;
+    }
+    else if (self.$width < 20.0) {
+        value = self.$width - 10.0;
+    }
+    else {
+        value = MAX(31.0, MIN(45.0, self.$width * 0.06));
+    }
+
+    return UIEdgeInsetsMake(value, value, value, value);
+}
 
 @end
 

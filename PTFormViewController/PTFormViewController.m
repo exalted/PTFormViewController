@@ -16,6 +16,20 @@
 
 #import "PTFormViewController.h"
 
+#import "UIView+PTFormViewFrameAdditions.h"
+
+@interface PTFormView ()
+
+@property (nonatomic, readonly) UIEdgeInsets insets;
+
+@end
+
+@interface PTFormViewCell ()
+
+@property (nonatomic, readonly) UIEdgeInsets insets;
+
+@end
+
 @interface PTFormViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @end
@@ -90,6 +104,20 @@
 }
 
 #pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PTFormView *formView = (PTFormView *)tableView;
+    PTFormViewCell *formViewCell = [formView cellForRowAtIndexPath:indexPath];
+
+    CGFloat constraintWidth = formView.$width - (formView.insets.left + formView.insets.right) - (formViewCell.insets.left + formViewCell.insets.right);
+
+    CGSize size = [formViewCell.textLabel.text sizeWithFont:formViewCell.textLabel.font
+                                          constrainedToSize:CGSizeMake(constraintWidth, CGFLOAT_MAX)
+                                              lineBreakMode:formViewCell.textLabel.lineBreakMode];
+
+    return MAX(44.0, size.height + 23.0);
+}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {

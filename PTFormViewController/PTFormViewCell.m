@@ -16,6 +16,8 @@
 
 #import "PTFormViewCell.h"
 
+#import "UIView+PTFormViewFrameAdditions.h"
+
 typedef enum {
     PTFormViewCellGroupReadOnly         = (PTFormViewCellStyleTextReadonly | PTFormViewCellStyleGroup),
     PTFormViewCellGroupInputSingleLine  = (PTFormViewCellStyleTextPlainInput | PTFormViewCellStyleTextSecureInput | PTFormViewCellStyleNumberInput),
@@ -24,6 +26,35 @@ typedef enum {
     PTFormViewCellGroupDateTime         = (PTFormViewCellStyleDate | PTFormViewCellStyleTime | PTFormViewCellStyleDateTime),
     PTFormViewCellGroupSelect           = (PTFormViewCellStyleSelectSingle | PTFormViewCellStyleSelectMultiple),
 } PTFormViewCellGroup;
+
+@interface PTFormViewCell (PTFormViewCellAdditions)
+
+@property (nonatomic, readonly) UIEdgeInsets insets;
+
+@end
+
+@implementation PTFormViewCell (PTFormViewCellAdditions)
+
+- (UIEdgeInsets)insets
+{
+    static NSArray *accessoryTypeWidths;
+
+    CGFloat value;
+
+    if (self.accessoryView) {
+        value = self.accessoryView.$width;
+    }
+    else {
+        if (accessoryTypeWidths == nil) {
+            accessoryTypeWidths = @[@0.0, @20.0, @33.0, @20.0];
+        }
+        value = [[accessoryTypeWidths objectAtIndex:self.accessoryType] floatValue];
+    }
+
+    return UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0 + value);
+}
+
+@end
 
 @interface PTFormViewCell ()
 
@@ -87,6 +118,9 @@ typedef enum {
         else if ((style & PTFormViewCellGroupSelect)) {
             [self prepareSelectCellWithStyle:style];
         }
+
+        self.textLabel.numberOfLines = 0;
+        self.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
     }
     return self;
 }

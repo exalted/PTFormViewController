@@ -20,6 +20,7 @@
 		502E1D441608A13E00B80745 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 502E1D431608A13E00B80745 /* Default-Landscape@2x~ipad.png */; };
 		504B4F5E15F0F36B000988CD /* PTFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B4F5D15F0F36B000988CD /* PTFormView.m */; };
 		50A321C11600E539004443D5 /* PTExampleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A321C01600E539004443D5 /* PTExampleData.m */; };
+		50A321D01601F335004443D5 /* UIView+PTFormViewFrameAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A321CF1601F335004443D5 /* UIView+PTFormViewFrameAdditions.m */; };
 		50C6AABC15EE69CD003CCE6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C6AABB15EE69CD003CCE6E /* UIKit.framework */; };
 		50C6AABE15EE69CD003CCE6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C6AABD15EE69CD003CCE6E /* Foundation.framework */; };
 		50C6AAC015EE69CD003CCE6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C6AABF15EE69CD003CCE6E /* CoreGraphics.framework */; };
@@ -48,6 +49,8 @@
 		504B4F5D15F0F36B000988CD /* PTFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTFormView.m; sourceTree = "<group>"; };
 		50A321BF1600E539004443D5 /* PTExampleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTExampleData.h; sourceTree = "<group>"; };
 		50A321C01600E539004443D5 /* PTExampleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTExampleData.m; sourceTree = "<group>"; };
+		50A321CE1601F335004443D5 /* UIView+PTFormViewFrameAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PTFormViewFrameAdditions.h"; sourceTree = "<group>"; };
+		50A321CF1601F335004443D5 /* UIView+PTFormViewFrameAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PTFormViewFrameAdditions.m"; sourceTree = "<group>"; };
 		50C6AAB715EE69CD003CCE6E /* FormDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C6AABB15EE69CD003CCE6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		50C6AABD15EE69CD003CCE6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -157,6 +160,8 @@
 				504B4F5D15F0F36B000988CD /* PTFormView.m */,
 				50C6AAEC15EF5D0B003CCE6E /* PTFormViewCell.h */,
 				50C6AAED15EF5D0C003CCE6E /* PTFormViewCell.m */,
+				50A321CE1601F335004443D5 /* UIView+PTFormViewFrameAdditions.h */,
+				50A321CF1601F335004443D5 /* UIView+PTFormViewFrameAdditions.m */,
 			);
 			name = PTFormViewController;
 			path = ../../PTFormViewController;
@@ -244,6 +249,7 @@
 				50C6AAEE15EF5D0C003CCE6E /* PTFormViewCell.m in Sources */,
 				504B4F5E15F0F36B000988CD /* PTFormView.m in Sources */,
 				50A321C11600E539004443D5 /* PTExampleData.m in Sources */,
+				50A321D01601F335004443D5 /* UIView+PTFormViewFrameAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
