@@ -18,6 +18,13 @@
 
 #import "UIView+PTFormViewFrameAdditions.h"
 
+#define PT_REQUIRED { NSAssert(NO, ([NSString stringWithFormat:@"Missing required method implementation '- %@'", NSStringFromSelector(_cmd)])); abort(); }
+#define PT_NOOP { }
+
+////////////////////////////////////////////////////////////////////////////////
+// (private)
+////////////////////////////////////////////////////////////////////////////////
+
 @interface PTFormView ()
 
 @property (nonatomic, readonly) UIEdgeInsets insets;
@@ -29,6 +36,10 @@
 @property (nonatomic, readonly) UIEdgeInsets insets;
 
 @end
+
+////////////////////////////////////////////////////////////////////////////////
+// Form view controller
+////////////////////////////////////////////////////////////////////////////////
 
 @interface PTFormViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -124,32 +135,19 @@
     PTFormView *formView = (PTFormView *)tableView;
     PTFormViewCell *formViewCell = (PTFormViewCell *)cell;
 
-    if ([formView.formDelegate respondsToSelector:@selector(formView:willDisplayCell:forRowAtIndexPath:)]) {
-        [formView.formDelegate formView:formView willDisplayCell:formViewCell forRowAtIndexPath:indexPath];
-    }
+    [formView.formDelegate formView:formView willDisplayCell:formViewCell forRowAtIndexPath:indexPath];
 }
 
 #pragma mark - Form view data source
 
-// required
+- (NSInteger)formView:(PTFormView *)formView numberOfRowsInSection:(NSInteger)section PT_REQUIRED
 
-- (NSInteger)formView:(PTFormView *)formView numberOfRowsInSection:(NSInteger)section
-{
-    NSAssert(NO, ([NSString stringWithFormat:@"Missing required method implementation '- %@'", NSStringFromSelector(_cmd)]));
-    abort();
-}
+- (PTFormViewCell *)formView:(PTFormView *)formView cellForRowAtIndexPath:(NSIndexPath *)indexPath PT_REQUIRED
 
-- (PTFormViewCell *)formView:(PTFormView *)formView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSAssert(NO, ([NSString stringWithFormat:@"Missing required method implementation '- %@'", NSStringFromSelector(_cmd)]));
-    abort();
-}
+- (NSInteger)numberOfSectionsInFormView:(PTFormView *)formView { return 1; }
 
-// optional
+#pragma mark - Form view delegate
 
-- (NSInteger)numberOfSectionsInFormView:(PTFormView *)formView
-{
-    return 1;
-}
+- (void)formView:(PTFormView *)formView willDisplayCell:(PTFormViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath PT_NOOP
 
 @end

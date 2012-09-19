@@ -24,9 +24,9 @@
 {
     static NSArray *items;
     if (items == nil) {
-        // ---------------------------------------------------------------------
-        // First section
-        // ---------------------------------------------------------------------
+        /*
+         * First section
+         */
         NSMutableArray *firstSectionItems = [NSMutableArray array];
 
         [firstSectionItems addObject:@{
@@ -55,9 +55,9 @@ Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismo
          kPTExampleDataCellLabelKey : @"Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
          }];
         
-        // ---------------------------------------------------------------------
-        // Second section
-        // ---------------------------------------------------------------------
+        /*
+         * Second section
+         */
         NSMutableArray *secondSectionItems = [NSMutableArray array];
 
         [secondSectionItems addObject:@{
@@ -70,9 +70,9 @@ Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismo
           kPTExampleDataCellLabelKey : @"Vehicula Ligula"
          }];
 
-        // =====================================================================
-        // Final data
-        // =====================================================================
+        /*
+         * Final data
+         */
         items = @[
         @{
         kPTExampleDataSectionTitleKey : @"Nullam quis risus eget urna mollis ornare vel eu leo.",
