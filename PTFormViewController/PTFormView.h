@@ -41,6 +41,9 @@ typedef enum {
 
 - (NSInteger)numberOfSectionsInFormView:(PTFormView *)formView;
 
+- (NSString *)formView:(PTFormView *)formView titleForHeaderInSection:(NSInteger)section;
+- (NSString *)formView:(PTFormView *)formView titleForFooterInSection:(NSInteger)section;
+
 @end
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +72,12 @@ typedef enum {
 - (id)initWithFrame:(CGRect)frame style:(PTFormViewStyle)style;
 
 - (id)dequeueReusableCellWithStyle:(PTFormViewStyle)style;
+
+- (NSInteger)numberOfSections;
+- (NSInteger)numberOfRowsInSection:(NSInteger)section;
+
+- (NSString *)titleForHeaderInSection:(NSInteger)section;
+- (NSString *)titleForFooterInSection:(NSInteger)section;
 
 - (PTFormViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 

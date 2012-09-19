@@ -17,15 +17,16 @@
 #import <Foundation/Foundation.h>
 
 // section keys
-#define kPTExampleDataSectionTitleKey   @"title"
-#define kPTExampleDataSectionItemsKey   @"items"
+#define kPTExampleDataSectionHeaderTitleKey     @"sectionHeaderTitle"
+#define kPTExampleDataSectionFooterTitleKey     @"sectionFooterTitle"
+#define kPTExampleDataSectionItemsKey           @"sectionItems"
 
 // cell keys
-#define kPTExampleDataCellStyleKey      @"style"
-#define kPTExampleDataCellLabelKey      @"label"
+#define kPTExampleDataItemStyleKey      @"itemStyle"
+#define kPTExampleDataItemLabelTextKey  @"itemLabelText"
 
 @interface PTExampleData : NSObject
 
-+ (NSArray *)items;
++ (NSArray *)sections;
 
 @end

@@ -19,7 +19,7 @@
 #import "UIView+PTFormViewFrameAdditions.h"
 
 #define PT_REQUIRED { NSAssert(NO, ([NSString stringWithFormat:@"Missing required method implementation '- %@'", NSStringFromSelector(_cmd)])); abort(); }
-#define PT_NOOP { }
+#define PT_NOOP     { }
 
 ////////////////////////////////////////////////////////////////////////////////
 // (private)
@@ -109,6 +109,16 @@
     return [(PTFormView *)tableView numberOfRowsInSection:section];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [(PTFormView *)tableView titleForHeaderInSection:section];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    return [(PTFormView *)tableView titleForFooterInSection:section];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [(PTFormView *)tableView cellForRowAtIndexPath:indexPath];
@@ -140,13 +150,26 @@
 
 #pragma mark - Form view data source
 
+// required
+
 - (NSInteger)formView:(PTFormView *)formView numberOfRowsInSection:(NSInteger)section PT_REQUIRED
 
 - (PTFormViewCell *)formView:(PTFormView *)formView cellForRowAtIndexPath:(NSIndexPath *)indexPath PT_REQUIRED
 
+// optional
+
 - (NSInteger)numberOfSectionsInFormView:(PTFormView *)formView { return 1; }
 
+- (NSString *)formView:(PTFormView *)formView titleForHeaderInSection:(NSInteger)section { return nil; }
+- (NSString *)formView:(PTFormView *)formView titleForFooterInSection:(NSInteger)section { return nil; }
+
 #pragma mark - Form view delegate
+
+// required
+
+// ...
+
+// optional
 
 - (void)formView:(PTFormView *)formView willDisplayCell:(PTFormViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath PT_NOOP
 

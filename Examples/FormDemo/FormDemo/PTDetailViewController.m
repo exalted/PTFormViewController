@@ -47,19 +47,34 @@
 
 - (NSInteger)numberOfSectionsInFormView:(PTFormView *)formView
 {
-    return [[PTExampleData items] count];
+    return [[PTExampleData sections] count];
 }
 
 - (NSInteger)formView:(PTFormView *)formView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[[PTExampleData items] objectAtIndex:section] objectForKey:kPTExampleDataSectionItemsKey] count];
+    return [[[[PTExampleData sections] objectAtIndex:section]
+             objectForKey:kPTExampleDataSectionItemsKey] count];
+}
+
+- (NSString *)formView:(PTFormView *)formView titleForHeaderInSection:(NSInteger)section
+{
+    return [[[PTExampleData sections] objectAtIndex:section]
+            objectForKey:kPTExampleDataSectionHeaderTitleKey];
+}
+
+- (NSString *)formView:(PTFormView *)formView titleForFooterInSection:(NSInteger)section
+{
+    return [[[PTExampleData sections] objectAtIndex:section]
+            objectForKey:kPTExampleDataSectionFooterTitleKey];
 }
 
 - (PTFormViewCell *)formView:(PTFormView *)formView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *item = [[[[PTExampleData items] objectAtIndex:indexPath.section] objectForKey:kPTExampleDataSectionItemsKey] objectAtIndex:indexPath.row];
+    NSDictionary *item = [[[[PTExampleData sections] objectAtIndex:indexPath.section]
+                           objectForKey:kPTExampleDataSectionItemsKey]
+                          objectAtIndex:indexPath.row];
 
-    PTFormViewCellStyle style = [[item objectForKey:kPTExampleDataCellStyleKey] intValue];
+    PTFormViewCellStyle style = [[item objectForKey:kPTExampleDataItemStyleKey] intValue];
 
     PTFormViewCell *cell = [formView dequeueReusableCellWithStyle:style];
     if (cell == nil) {
@@ -67,7 +82,7 @@
         cell.options = PTFormViewCellInline;
     }
 
-    cell.textLabel.text = [item objectForKey:kPTExampleDataCellLabelKey];
+    cell.textLabel.text = [item objectForKey:kPTExampleDataItemLabelTextKey];
 
     return cell;
 }

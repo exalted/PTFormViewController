@@ -88,6 +88,11 @@
     return self;
 }
 
+- (id)dequeueReusableCellWithStyle:(PTFormViewStyle)style
+{
+    return [self dequeueReusableCellWithIdentifier:[PTFormViewCell reuseIdentifierForStyle:style]];
+}
+
 - (NSInteger)numberOfSections
 {
     NSString *key = [NSString stringWithFormat:@"%@", NSStringFromSelector(_cmd)];
@@ -110,6 +115,31 @@
     return [object integerValue];
 }
 
+- (NSString *)titleForHeaderInSection:(NSInteger)section
+{
+    NSString *key = [NSString stringWithFormat:@"%@%d", NSStringFromSelector(_cmd), section];
+    id object = [self.cache objectForKey:key];
+    if (object == nil) {
+        object = [self.formDataSource formView:self titleForHeaderInSection:section];
+        [self.cache setObject:(object ? object : [NSNull null]) forKey:key];
+    }
+    return (object == [NSNull null] ? nil : object);
+}
+
+- (NSString *)titleForFooterInSection:(NSInteger)section
+{
+    NSString *key = [NSString stringWithFormat:@"%@%d", NSStringFromSelector(_cmd), section];
+    id object = [self.cache objectForKey:key];
+    if (object == nil) {
+        object = [self.formDataSource formView:self titleForFooterInSection:section];
+        if (object == nil) {
+            object = [NSNull null];
+        }
+        [self.cache setObject:(object ? object : [NSNull null]) forKey:key];
+    }
+    return (object == [NSNull null] ? nil : object);
+}
+
 - (PTFormViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PTFormViewCell *cell = [self.formDataSource formView:self cellForRowAtIndexPath:indexPath];
@@ -125,11 +155,6 @@
     }
 
     return cell;
-}
-
-- (id)dequeueReusableCellWithStyle:(PTFormViewStyle)style
-{
-    return [self dequeueReusableCellWithIdentifier:[PTFormViewCell reuseIdentifierForStyle:style]];
 }
 
 - (void)reloadData

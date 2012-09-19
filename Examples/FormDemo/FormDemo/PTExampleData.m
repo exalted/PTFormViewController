@@ -20,70 +20,74 @@
 
 @implementation PTExampleData
 
-+ (NSArray *)items
++ (NSArray *)sections
 {
-    static NSArray *items;
-    if (items == nil) {
+    static NSArray *sections;
+    if (sections == nil) {
         /*
          * First section
          */
         NSMutableArray *firstSectionItems = [NSMutableArray array];
 
         [firstSectionItems addObject:@{
-          kPTExampleDataCellStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextReadonly],
-         kPTExampleDataCellLabelKey : @"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla. Etiam porta sem malesuada magna mollis euismod. Donec ullamcorper nulla non metus auctor fringilla. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Donec sed odio dui."
+            kPTExampleDataItemStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextReadonly],
+            kPTExampleDataItemLabelTextKey : @"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla. Etiam porta sem malesuada magna mollis euismod. Donec ullamcorper nulla non metus auctor fringilla. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Donec sed odio dui."
          }];
-        
+
         [firstSectionItems addObject:@{
-          kPTExampleDataCellStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleGroup],
-         kPTExampleDataCellLabelKey : @"Parturient"
+            kPTExampleDataItemStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleGroup],
+            kPTExampleDataItemLabelTextKey : @"Parturient"
          }];
-        
+
         [firstSectionItems addObject:@{
-          kPTExampleDataCellStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextReadonly],
-         kPTExampleDataCellLabelKey : @"Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum."
+            kPTExampleDataItemStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextReadonly],
+            kPTExampleDataItemLabelTextKey : @"Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum."
          }];
-        
+
         [firstSectionItems addObject:@{
-          kPTExampleDataCellStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextReadonly],
-         kPTExampleDataCellLabelKey : @"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.\n\n\
+            kPTExampleDataItemStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextReadonly],
+            kPTExampleDataItemLabelTextKey : @"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.\n\n\
 Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla."
          }];
-        
+
         [firstSectionItems addObject:@{
-          kPTExampleDataCellStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextReadonly],
-         kPTExampleDataCellLabelKey : @"Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+            kPTExampleDataItemStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextReadonly],
+            kPTExampleDataItemLabelTextKey : @"Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
          }];
-        
+
         /*
          * Second section
          */
         NSMutableArray *secondSectionItems = [NSMutableArray array];
 
         [secondSectionItems addObject:@{
-           kPTExampleDataCellStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleGroup],
-          kPTExampleDataCellLabelKey : @"Sed posuere consectetur est at lobortis."
+            kPTExampleDataItemStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleGroup],
+            kPTExampleDataItemLabelTextKey : @"Sed posuere consectetur est at lobortis."
          }];
 
         [secondSectionItems addObject:@{
-           kPTExampleDataCellStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleGroup],
-          kPTExampleDataCellLabelKey : @"Vehicula Ligula"
+            kPTExampleDataItemStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleGroup],
+            kPTExampleDataItemLabelTextKey : @"Vehicula Ligula"
          }];
 
         /*
          * Final data
          */
-        items = @[
-        @{
-        kPTExampleDataSectionTitleKey : @"Nullam quis risus eget urna mollis ornare vel eu leo.",
-        kPTExampleDataSectionItemsKey : [firstSectionItems copy]
-        },
-        @{
-        kPTExampleDataSectionTitleKey : @"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.",
-        kPTExampleDataSectionItemsKey : [secondSectionItems copy]
-        }];
+        sections = @[
+            @{
+                kPTExampleDataSectionHeaderTitleKey : @"Nullam quis risus eget urna mollis ornare vel eu leo.",
+                kPTExampleDataSectionFooterTitleKey : @"Aenean lacinia bibendum nulla sed consectetur.",
+                kPTExampleDataSectionItemsKey : [firstSectionItems copy]
+            },
+            @{
+                kPTExampleDataSectionHeaderTitleKey : @"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.",
+                kPTExampleDataSectionFooterTitleKey : @"Ultricies Porta Mattis",
+                kPTExampleDataSectionItemsKey : [secondSectionItems copy]
+            }
+        ];
     }
-    return items;
+
+    return sections;
 }
 
 @end
