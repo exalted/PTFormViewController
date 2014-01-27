@@ -71,6 +71,21 @@ Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismo
          }];
 
         /*
+         * Third section
+         */
+        NSMutableArray *thirdSectionItems = [NSMutableArray array];
+
+        [thirdSectionItems addObject:@{
+            kPTExampleDataItemStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextPlainInput],
+            kPTExampleDataItemLabelTextKey : @"Username"
+         }];
+
+        [thirdSectionItems addObject:@{
+            kPTExampleDataItemStyleKey : [NSNumber numberWithInt:PTFormViewCellStyleTextSecureInput],
+            kPTExampleDataItemLabelTextKey : @"Password"
+         }];
+
+        /*
          * Final data
          */
         sections = @[
@@ -83,6 +98,11 @@ Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismo
                 kPTExampleDataSectionHeaderTitleKey : @"Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.",
                 kPTExampleDataSectionFooterTitleKey : @"Ultricies Porta Mattis",
                 kPTExampleDataSectionItemsKey : [secondSectionItems copy]
+            },
+            @{
+                kPTExampleDataSectionHeaderTitleKey : @"Account",
+                kPTExampleDataSectionFooterTitleKey : @"Insert your credentials and hit login.",
+                kPTExampleDataSectionItemsKey : [thirdSectionItems copy]
             }
         ];
     }

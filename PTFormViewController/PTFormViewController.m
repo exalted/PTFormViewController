@@ -131,19 +131,29 @@
     PTFormView *formView = (PTFormView *)tableView;
     PTFormViewCell *formViewCell = [formView cellForRowAtIndexPath:indexPath];
 
-    CGFloat constraintWidth = formView.$width - (formView.insets.left + formView.insets.right) - (formViewCell.insets.left + formViewCell.insets.right);
+    static CGFloat DefaultHeight = 44.0;
 
-    CGSize size = [formViewCell.textLabel.text sizeWithFont:formViewCell.textLabel.font
-                                          constrainedToSize:CGSizeMake(constraintWidth, CGFLOAT_MAX)
-                                              lineBreakMode:formViewCell.textLabel.lineBreakMode];
+    if (formViewCell.style == PTFormViewCellStyleTextReadonly) {
+        CGFloat constraintWidth = formView.$width - (formView.insets.left + formView.insets.right) - (formViewCell.insets.left + formViewCell.insets.right);
 
-    return MAX(44.0, size.height + 23.0);
+        CGSize size = [formViewCell.textLabel.text sizeWithFont:formViewCell.textLabel.font
+                                              constrainedToSize:CGSizeMake(constraintWidth, CGFLOAT_MAX)
+                                                  lineBreakMode:formViewCell.textLabel.lineBreakMode];
+
+        return MAX(DefaultHeight, size.height + formViewCell.insets.top + formViewCell.insets.bottom);
+    }
+
+    return DefaultHeight;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PTFormView *formView = (PTFormView *)tableView;
     PTFormViewCell *formViewCell = (PTFormViewCell *)cell;
+
+    formViewCell.backgroundColor = [UIColor magentaColor];
+    formViewCell.contentView.backgroundColor = [UIColor yellowColor];
+    formViewCell.textLabel.backgroundColor = [UIColor greenColor];
 
     [formView.formDelegate formView:formView willDisplayCell:formViewCell forRowAtIndexPath:indexPath];
 }

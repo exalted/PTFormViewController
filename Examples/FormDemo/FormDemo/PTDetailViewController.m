@@ -29,6 +29,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = NSLocalizedString(@"Detail", @"Detail");
+        self.formView.separatorColor = [UIColor blueColor];
     }
     return self;
 }

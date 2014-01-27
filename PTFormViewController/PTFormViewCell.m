@@ -55,7 +55,7 @@ typedef enum {
         value = [[accessoryTypeWidths objectAtIndex:self.accessoryType] floatValue];
     }
 
-    return UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0 + value);
+    return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0 + value);
 }
 
 @end
@@ -129,14 +129,30 @@ typedef enum {
             [self prepareSelectCellWithStyle:style];
         }
 
-        self.textLabel.numberOfLines = 0;
         self.textLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
     }
     return self;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+
+    if ((self.style & PTFormViewCellGroupInputSingleLine)) {
+        CGSize size = [self.textLabel.text sizeWithFont:self.textLabel.font
+                                      constrainedToSize:CGSizeMake(self.textLabel.$width * 0.6, CGFLOAT_MAX)
+                                          lineBreakMode:self.textLabel.lineBreakMode];
+
+        self.textLabel.$width = size.width;
+    }
+}
+
 - (void)prepareReadOnlyCellWithStyle:(PTFormViewCellStyle)style
 {
+    if (style == PTFormViewCellStyleTextReadonly) {
+        self.textLabel.numberOfLines = 0;
+    }
+
     if (style == PTFormViewCellStyleGroup) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -188,6 +204,15 @@ typedef enum {
 {
     [super prepareForReuse];
     // Reset attributes of the cell that are not related to content, for example, alpha, editing, and selection state.
+}
+*/
+
+/*
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
 }
 */
 
